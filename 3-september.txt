@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        int sl=1;
+        bool flag=true;
+        for(sl=1;sl<=s.length()/2;sl++)   
+        {
+            flag=true;
+            int i;
+            if(s.length()%sl==0)
+            {
+                for(i=sl;i+sl<=s.length();i+=sl)
+                {
+                    if(s.substr(0,sl)!=s.substr(i,sl))
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+                if(i!=s.length())
+                        flag=false;
+                if(flag)
+                    return true;
+            }
+        }
+        return false;
+    }
+};
