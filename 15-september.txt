@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int ans = 0;
+        int n = s.length();
+        bool okword = false;
+        
+        while(n--)
+        {
+            if(s[n] == ' ')
+            {
+                if(okword)
+                {
+                    return ans;
+                }
+            }
+            else
+            {
+                ans++;
+                okword = true;
+            }
+        }
+        return ans;
+    }
+};
