@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define pob pop_back
+#define S second
+#define F first
+#define vll vector<long long int>
+#define pll pair<long long int,long long int>
+#define mod 1000000007
+#define mod2 998244353
+#define ll long long int
+#define ld long double  
+
+class Solution {
+public:
+    int minOperations(vector<int>& a) {
+        ll n = a.size();
+        sort(a.begin(),a.end());
+        ll ans = n - 1;
+        vll dup(n + 10);
+        map<ll,ll> mp;
+        mp[a[0]]++;
+        for(ll i = 1 ; i < n ; i++ )
+        {
+            dup[i] = dup[i-1];
+            dup[i] += mp[a[i]];
+            mp[a[i]] |= 1;
+        }
+        dup[n] = dup[n-1];
+        for(ll i = 0 ; i < n ; i++ )
+        {
+            ll r = upper_bound(a.begin(),a.end(),a[i] + n - 1) - a.begin();
+            ll val = n - (r - i);
+            if(i == 0)
+                val += dup[r];
+            else
+                val += dup[r] - dup[i-1];
+            ans = min(ans , val);
+        }
+        return ans;
+    }
+};
