@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> findOriginalArray(vector<int>& c) {
+        if(c.size() & 1)
+            return {};
+        map<int,int> mp;
+        for(auto x:c)
+            mp[x]++;
+        sort(c.rbegin(),c.rend());
+        vector<int> ans;
+        int cnt = 0;
+        for(auto x:c)
+        {
+            if(x == 0)
+            {
+                cnt++;
+                continue;
+            }
+            if(mp[x] > 0)
+            {
+                if(x % 2 == 0 and mp[x/2] > 0)
+                    ans.push_back(x/2) , mp[x]-- , mp[x/2]--;
+                else
+                    return {};
+            }
+        }
+        if(cnt & 1)
+            return {};
+        while(cnt > 0)
+            cnt -= 2 , ans.push_back(0);
+        return ans;
+    }
+};
