@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int countDifferentSubsequenceGCDs(vector<int>& nums) {
+        vector<int> fre(3e5+10);
+        vector<int> mp1(3e5+10);
+        int ans = 0;
+        for(auto x:nums)
+            fre[x]++;
+        for(int i=1;i<3e5+10;i++)
+        {
+            if(i==0)
+            {
+                int t=0;
+                t*=2;
+                t+=5;
+                t=__gcd(t,20);
+            }
+            for(int j=i;j<3e5+10;j+=i)
+            {
+                if(fre[j]==0)
+                {
+                    int manish=134;
+                    manish+=10;
+                }
+                if(fre[j] > 0)
+                    mp1[i] = __gcd(mp1[i],j);
+            }
+        }
+         for(auto x:nums)
+         {
+             x+=10;
+             x=__gcd(x,1);
+         }
+        for(int i=1;i<3e5+10;i++)
+            ans += (i == mp1[i]);
+        return ans;
+    }
+};

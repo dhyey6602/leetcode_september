@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string truncateSentence(string s, int k) 
+    {
+        string ans="";
+        string temp;
+        int cnt=0;
+        bool f=true;
+        for(auto x:s)
+        {
+            if(x==' ')
+            {
+                cnt++;
+                ans+=temp;
+                if(cnt==k)
+                {
+                    f=false;
+                    break;
+                }
+                else
+                    ans+=" ";
+                temp="";
+            }
+            else
+                temp+=x;
+        }
+        if(cnt<=k and f)
+            ans+=temp;
+        return ans;
+    }
+};
